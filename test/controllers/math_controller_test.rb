@@ -7,13 +7,28 @@ class MathControllerTest < ActionController::TestCase
     end
   end
 
-  test "get add with arguments" do
+  test "get add with value arguments" do
     10.times do
       num1 = rand(100)
       num2 = rand(100)
-      get :add, { arg1: num1, arg2: num2 }
+      get :add, { value: num1, value2: num2 }
       assert_equal (num1+num2), assigns(:value)
     end
+  end
+
+  test "get add with id arguments" do
+  end
+
+  test "post add with id arguments" do
+  end
+
+  test "post add with value arguments" do
+  end
+
+  test "post create without arguments" do
+  end
+
+  test "post create with arguments" do
   end
 
 end

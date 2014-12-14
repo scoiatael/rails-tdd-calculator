@@ -4,10 +4,10 @@ class MathController < ApplicationController
   end
 
   def first_arg
-    params.require :arg1
+    params.require :value
   end
 
   def snd_arg
-    params.require :arg2
+    params.require :value2
   end
 end
