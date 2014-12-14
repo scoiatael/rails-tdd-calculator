@@ -1,7 +1,8 @@
 class Calculator < ActiveRecord::Base
 
   def self.add(num1, num2)
-    # add type check?
+    num1 = 0 unless num1.is_a? Integer
+    num2 = 0 unless num2.is_a? Integer
     num1+num2
   end
 
