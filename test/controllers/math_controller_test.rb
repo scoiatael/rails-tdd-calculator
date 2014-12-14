@@ -7,11 +7,11 @@ class MathControllerTest < ActionController::TestCase
 
   test "get add without arguments" do
     raisesParamMissing { get :add }
-    raisesParamMissing { get :add, id: 2 }
     raisesParamMissing { get :add, value: 2 }
+    raisesParamMissing { get :add, value2: 2 }
   end
 
-  test "get add with value arguments" do
+  test "get add with arguments" do
     10.times do
       randomize2_num!
       get :add, { value: @num, value2: @num2 }
@@ -19,36 +19,46 @@ class MathControllerTest < ActionController::TestCase
     end
   end
 
-  test "get add with id arguments assigns calculator" do
+  test "get add_to without arguments" do
+    raisesParamMissing { get :add_to }
+    raisesParamMissing { get :add_to, value: 2 }
+    raisesParamMissing { get :add_to, id: 1 }
+  end
+
+  test "get add_to with arguments assigns calculator" do
     randomize_num!
-    get :add, { value: @num, id: 1 }
+    get :add_to, { value: @num, id: 1 }
     assert_equal Calculator.find(1), assigns(:calculator)
   end
 
-  test "get add with id arguments assigns correct value" do
+  test "get add_to with arguments assigns correct value" do
     10.times do
       randomize_num!
-      get :add, { value: @num, id: 1 }
+      get :add_to, { value: @num, id: 1 }
       assert_equal (@num + Calculator.find(1).value), assigns(:value)
     end
   end
 
-  test "post add without arguments" do
-    raisesParamMissing { post :add }
-    raisesParamMissing { post :add, id: 2 }
-    raisesParamMissing { post :add, value: 2 }
+  test "post create without arguments assigns new calculator" do
+    get :add_to
+    assert_equal 3, assigns(:calculator).id
   end
 
-  test "post add with id arguments" do
+  test "post create without arguments assigns new calculator with value 0" do
+    get :add_to
+    assert_equal 0, assigns(:calculator).value
   end
 
-  test "post add with value arguments" do
+  test "post create with arguments assigns new calculator" do
+    randomize_num!
+    get :add_to, value: @num
+    assert_equal 3, assigns(:calculator).id
   end
 
-  test "post create without arguments" do
-  end
-
-  test "post create with arguments" do
+  test "post create with arguments assigns new calculator with correct value" do
+    randomize_num!
+    get :add_to, value: @num
+    assert_equal @num, assigns(:calculator).value
   end
 
 end
