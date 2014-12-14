@@ -1,13 +1,22 @@
 class MathController < ApplicationController
   def add
-    @value = first_arg.to_f + snd_arg.to_f
+    @value = Calculator.add first_arg, snd_arg
+  end
+
+  def add!
+    @calculator = Calculator.find(id)
+    @value = @calculator.add first_arg
   end
 
   def first_arg
-    params.require :value
+    params.require(:value).to_i
   end
 
   def snd_arg
-    params.require :value2
+    params.require(:value2).to_i
+  end
+
+  def id
+    params.require(:id).to_i
   end
 end
