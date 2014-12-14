@@ -10,6 +10,7 @@ class MathController < ApplicationController
     else
       @value = @calculator.add first_arg
     end
+    @value
   end
 
   def create
