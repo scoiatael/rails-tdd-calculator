@@ -12,5 +12,6 @@ class Calculator < ActiveRecord::Base
 
   def add!(num)
     self.value = self.add(num)
+    self.save!
   end
 end

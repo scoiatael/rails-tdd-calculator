@@ -3,9 +3,19 @@ class MathController < ApplicationController
     @value = Calculator.add first_arg, snd_arg
   end
 
-  def add!
+  def add_to
     @calculator = Calculator.find(id)
-    @value = @calculator.add first_arg
+    if request.post?
+      @value = @calculator.add! first_arg
+    else
+      @value = @calculator.add first_arg
+    end
+  end
+
+  def create
+    first = params.permit(:value)["value"]
+    first_num = if first.nil? then 0 else first.to_i end
+    @calculator = Calculator.create value: first_num
   end
 
   def first_arg

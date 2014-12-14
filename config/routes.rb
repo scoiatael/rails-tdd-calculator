@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   get 'math/add'
+  get 'math/add_to'
+  post 'math/add_to'
+  get 'math/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
