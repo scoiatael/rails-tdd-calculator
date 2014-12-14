@@ -2,19 +2,6 @@ require 'test_helper'
 
 class CalculatorTest < ActiveSupport::TestCase
 
-  def random_num
-    rand 100
-  end
-
-  def randomize_num!
-    @num = random_num
-  end
-
-  def randomize2_num!
-    randomize_num!
-    @num2 = random_num
-  end
-
   def initialize_calc!
     randomize_num!
     @calc = Calculator.new value: @num
