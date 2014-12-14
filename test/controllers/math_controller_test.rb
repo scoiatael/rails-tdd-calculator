@@ -1,13 +1,13 @@
 require 'test_helper'
 
 class MathControllerTest < ActionController::TestCase
-  test "add without arguments" do
+  test "get add without arguments" do
     assert_raise ActionController::ParameterMissing do
       get :add
     end
   end
 
-  test "add with arguments" do
+  test "get add with arguments" do
     10.times do
       num1 = rand(100)
       num2 = rand(100)
