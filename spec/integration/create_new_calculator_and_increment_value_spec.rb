@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class CreateNewCalculatorAndIncrementValueTest < ActionDispatch::IntegrationTest
-  test "run" do
+RSpec.describe "Math API", type: :request do
+  it "can create and update calculator" do
     randomize2_num!
     post 'math/create', value: @num
     id = assigns(:calculator).id
@@ -10,7 +10,7 @@ class CreateNewCalculatorAndIncrementValueTest < ActionDispatch::IntegrationTest
     post 'math/add_to', { id: id, value: @num2 }
 
     assert_response :success
-    assert_equal (@num + @num2), assigns(:value)
-    assert_equal (@num + @num2), assigns(:calculator).value
+    expect(@num + @num2).to eq assigns(:value)
+    expect(@num + @num2).to eq assigns(:calculator).value
   end
 end
